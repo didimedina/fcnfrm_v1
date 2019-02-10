@@ -20,5 +20,8 @@
   "homepage": "https://github.com/didimedina/fcnfrm_v1#readme",
   "devDependencies": {
     "sass": "^1.17.0"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.11.0"
   }
 }
