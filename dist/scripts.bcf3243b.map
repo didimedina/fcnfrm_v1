@@ -1,0 +1,1 @@
+{"version":3,"sources":["scripts/index.js"],"names":["console","log"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,OAAO,CAACC,GAAR,CAAY,aAAZ","file":"scripts.bcf3243b.map","sourceRoot":"..","sourcesContent":["console.log('hello world');"]}

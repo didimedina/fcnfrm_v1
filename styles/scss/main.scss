@@ -1,0 +1,11 @@
+$black-color: black;
+
+.container {
+    background-color: $black-color;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 50%;
+    width: 50%;
+    border: 5px solid red;  
+}
