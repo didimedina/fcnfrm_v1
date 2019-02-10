@@ -1,11 +1,15 @@
 $black-color: black;
 
-.container {
-    background-color: $black-color;
+.wrapper {
     display: flex;
-    justify-content: center;
-    align-content: center;
-    height: 50%;
-    width: 50%;
-    border: 5px solid red;  
 }
+
+.box {
+    margin-left: 20px;
+    height: 100px;
+    width: 100px;
+}
+
+.blue {background-color: blue;}
+.red {background-color: red;}
+.green {background-color: green;}
