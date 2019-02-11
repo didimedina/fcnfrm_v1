@@ -31,11 +31,30 @@
     @include breakpoint(l-screen) {max-width: 640px;}
 }
 
+
+
 .promo-video {
     grid-column: 2 / 5;
     height: 80vh;
     margin-bottom: 160px;
     background-color: #f7f7f7;
+    position: relative;
+}
+
+.promo-video__img-placeholder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f7f7f7;
+    background-image: url("../../assets/images/video-placeholder.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.promo-video__embed {
+    width: 100%;
+    height: 100%;
 }
 
 
