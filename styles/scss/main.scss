@@ -1,15 +1,42 @@
-$black-color: black;
+@import './global.scss';
 
-.wrapper {
+.header {
+    grid-column: 3 / 4;
+    margin-top: 96px;
+    margin-bottom: 160px;
+    height: 60px;
+    background-color: #f7f7f7;
+}
+
+.mission {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: 3 / 4;
+    align-self: center;
+    margin-bottom: 160px;
 }
 
-.box {
-    margin-left: 20px;
-    height: 100px;
-    width: 100px;
+.mission__h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    @include breakpoint(xl-screen){max-width: 1024px;}
+    @include breakpoint(l-screen) {max-width: 768px;}
 }
 
-.blue {background-color: blue;}
-.red {background-color: red;}
-.green {background-color: green;}
+.mission__h4 {
+    text-align: center;
+    color: #828282;
+    @include breakpoint(xl-screen){max-width: 896px;}
+    @include breakpoint(l-screen) {max-width: 640px;}
+}
+
+.promo-video {
+    grid-column: 2 / 5;
+    height: 80vh;
+    margin-bottom: 160px;
+    background-color: #f7f7f7;
+}
+
+
+

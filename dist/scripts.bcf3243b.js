@@ -1857,11 +1857,26 @@ var _animeEs = _interopRequireDefault(require("../node_modules/animejs/lib/anime
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log('hello world');
-(0, _animeEs.default)({
-  targets: '.box',
-  translateY: 250
-});
+console.log('hello world'); // document.addEventListener('DOMContentLoaded', () => {
+//     anime({
+//         targets: '.hero__container',
+//         keyframes: [
+//             {scale: 0.9, duration: 0},
+//             {scale: 1, duration: 500},
+//             {scale: 2, duration: 1000},
+//             {scale: .5, duration: 500},
+//             {scale: 1, duration: 200},
+//         ],
+//         easing: 'spring(1, 80, 10, 0)',
+//         loop: false
+//     });
+//     // anime({
+//     //     targets: '.hero__container',
+//     //     scale: 1.0,
+//     //     easing: 'easeOutCubic',
+//     //     duration: 5000
+//     // });
+// })
 },{"../node_modules/animejs/lib/anime.es.js":"node_modules/animejs/lib/anime.es.js"}],"../../../../../.nvm/versions/node/v11.2.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1889,7 +1904,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50811" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62367" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

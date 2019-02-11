@@ -1,0 +1,217 @@
+* {
+    margin: 0px;
+}
+
+
+
+
+
+// ==== BREAKPOINTS ===========================
+
+@mixin breakpoint($screen) {
+   @if $screen == xl-screen {
+     @media (min-width: 1536px) { @content ; }
+  }
+   @else if $screen == l-screen {
+     @media (min-width: 896px) and (max-width: 1536px) { @content ; }
+  }
+    @else if $screen == m-screen {
+     @media (min-width: 512px) and (max-width: 896px) { @content ; }
+  }
+   @else if $screen == s-screen {
+     @media (min-width: 320px) and (max-width: 512px) { @content ; }
+  }
+}
+
+
+
+
+// ==== MAIN GRID ==============================
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100vw;
+    max-width: 2048px;
+    min-width: 320px;
+    display: grid;
+    grid-column-gap: 0px;
+
+    @include breakpoint(xl-screen) {grid-template-columns: 128px 128px 1fr 128px 128px;}
+    @include breakpoint(l-screen) {grid-template-columns: 64px 64px 1fr 64px 64px;}
+    @include breakpoint(m-screen) {grid-template-columns: 0px 64px 1fr 64px 0px;}
+    @include breakpoint(s-screen) {grid-template-columns: 0px 32px 1fr 32px 0px;}
+
+}
+
+
+
+
+// ==== TYPOGRAPHY ============================== 
+@font-face {
+    src: url('../../assets/fonts/TiemposText-Bold.otf');
+    font-family: Tiempos;
+    font-weight: bold;
+}
+@font-face {
+    src: url('../../assets/fonts/lineto-circular-pro-book.eot');
+    font-family: Circular;
+    font-weight: normal;
+}
+
+
+.h1 {
+    font-family: Tiempos, Times, serif;
+    font-weight: normal;
+
+    @include breakpoint(xl-screen) {font-size: 80px;}
+    @include breakpoint(l-screen) {font-size: 64px;}
+    @include breakpoint(m-screen) {font-size: 56px;}
+    @include breakpoint(s-screen) {font-size: 32px;}
+}
+
+.h2 {
+    font-family: Tiempos, Times, serif;
+    font-weight: bold;
+
+    @include breakpoint(xl-screen) {font-size: 56px;}
+    @include breakpoint(l-screen) {font-size: 48px;}
+    @include breakpoint(m-screen) {font-size: 40px;}
+    @include breakpoint(s-screen) {font-size: 28px;}
+}
+
+.h3 {
+    font-family: Circular, 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+
+    @include breakpoint(xl-screen) {font-size: 40px;}
+    @include breakpoint(l-screen) {font-size: 32px;}
+    @include breakpoint(m-screen) {font-size: 28px;}
+    @include breakpoint(s-screen) {font-size: 24px;}
+}
+
+.h4 {
+    font-family: Circular, 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+
+    @include breakpoint(xl-screen) {font-size: 28px;}
+    @include breakpoint(l-screen) {font-size: 24px;}
+    @include breakpoint(m-screen) {font-size: 20px;}
+    @include breakpoint(s-screen) {font-size: 20px;}
+}
+
+.b1 {
+    font-family: Circular, 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+
+    @include breakpoint(xl-screen) {font-size: 24px;}
+    @include breakpoint(l-screen) {font-size: 20px;}
+    @include breakpoint(m-screen) {font-size: 16px;}
+    @include breakpoint(s-screen) {font-size: 16px;}
+}
+
+.b2 {
+    font-family: Circular, 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+
+    @include breakpoint(xl-screen) {font-size: 20px;}
+    @include breakpoint(l-screen) {font-size: 16px;}
+    @include breakpoint(m-screen) {font-size: 14px;}
+    @include breakpoint(s-screen) {font-size: 14px;}
+}
+
+.b3 {
+    font-family: Circular, 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+
+    @include breakpoint(xl-screen) {font-size: 16px;}
+    @include breakpoint(l-screen) {font-size: 14px;}
+    @include breakpoint(m-screen) {font-size: 12px;}
+    @include breakpoint(s-screen) {font-size: 12px;}
+}
+
+.b4 {
+    font-family: Circular, 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+
+    @include breakpoint(xl-screen) {font-size: 14px;}
+    @include breakpoint(l-screen) {font-size: 12px;}
+    @include breakpoint(m-screen) {font-size: 10px;}
+    @include breakpoint(s-screen) {font-size: 10px;}
+}
+
+
+// @media (min-width: $xl-screen) {
+//     // Spacers
+//     :root {
+//         --large-spacer: 120px;
+//     }
+
+//     // Typography
+//     .h1 {font-size: 80px;}
+//     .h2 {font-size: 56px;}
+//     .h3 {font-size: 40px;}
+//     .h4 {font-size: 28px;}
+//     .b1 {font-size: 24px;}
+//     .b2 {font-size: 20px;}
+//     .b3 {font-size: 16px;}
+//     .b4 {font-size: 14px;}
+
+//     // Container Grid 
+//     .container {grid-template-columns: 128px 128px 1fr 128px 128px;}
+// }
+
+
+// @media (min-width: $l-screen) and (max-width: $xl-screen) {
+//     // Spacers
+//     :root {
+//         --large-spacer: 60px;
+//     }
+
+//     // Typography
+//     .h1 {font-size: 64px;}
+//     .h2 {font-size: 48px;}
+//     .h3 {font-size: 32px;}
+//     .h4 {font-size: 24px;}
+//     .b1 {font-size: 20px;}
+//     .b2 {font-size: 16px;}
+//     .b3 {font-size: 14px;}
+//     .b4 {font-size: 12px;}
+
+//     // Container Grid 
+//     .container {grid-template-columns: 64px 64px 1fr 64px 64px;}
+// }
+
+// @media (min-width: $m-screen) and (max-width: $l-screen) {
+//     // Typography
+//     .h1 {font-size: 56px;}
+//     .h2 {font-size: 40px;}
+//     .h3 {font-size: 28px;}
+//     .h4 {font-size: 20px;}
+//     .b1 {font-size: 16px;}
+//     .b2 {font-size: 14px;}
+//     .b3 {font-size: 12px;}
+//     .b4 {font-size: 10px;}
+
+//     // Container Grid 
+//     .container {grid-template-columns: 0px 64px 1fr 64px 0px;}
+// }
+
+// @media (min-width: $s-screen) and (max-width: $m-screen) {
+//     // Typography
+//     .h1 {font-size: 32px;}
+//     .h2 {font-size: 28px;}
+//     .h3 {font-size: 24px;}
+//     .h4 {font-size: 20px;}
+//     .b1 {font-size: 16px;}
+//     .b2 {font-size: 14px;}
+//     .b3 {font-size: 12px;}
+//     .b4 {font-size: 10px;}
+
+//     // Container Grid 
+//     .container {grid-template-columns: 0px 32px 1fr 32px 0px;}
+// }
