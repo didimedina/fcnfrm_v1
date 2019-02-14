@@ -3,10 +3,6 @@
     padding: 0px;
 }
 
-
-
-
-
 // ==== BREAKPOINTS ===========================
 
 @mixin breakpoint($screen) {
@@ -24,9 +20,6 @@
   }
 }
 
-
-
-
 // ==== MAIN GRID ==============================
 
 .section {
@@ -35,7 +28,8 @@
     align-items: center;
 }
 
-.container {
+.main-grid {
+    padding: 96px 0px 96px 0px;
     width: 100vw;
     max-width: 2048px;
     min-width: 320px;
@@ -49,7 +43,14 @@
 
 }
 
-
+// ==== Colors ==================================
+$color-darkest: #242628;
+$color-darker: #5C5C5C;
+$color-dark: #919191;
+$color-mid: #C5C5C5;
+$color-light: #DADADA;
+$color-lighter: #F3F3F3;
+$color-lightest:#F7F7F7;
 
 
 // ==== TYPOGRAPHY ============================== 
@@ -144,6 +145,12 @@
     @include breakpoint(m-screen) {font-size: 10px;}
     @include breakpoint(s-screen) {font-size: 10px;}
 }
+
+.section-title {
+    color: $color-mid;
+}
+
+
 
 
 // @media (min-width: $xl-screen) {

@@ -12,7 +12,8 @@
       align-items: center;
 }
 
-.container {
+.main-grid {
+  padding: 96px 0px 96px 0px;
   width: 100vw;
   max-width: 2048px;
   min-width: 320px;
@@ -21,25 +22,25 @@
   grid-column-gap: 0px;
 }
 @media (min-width: 1536px) {
-  .container {
+  .main-grid {
     -ms-grid-columns: 128px 128px 1fr 128px 128px;
         grid-template-columns: 128px 128px 1fr 128px 128px;
   }
 }
 @media (min-width: 896px) and (max-width: 1536px) {
-  .container {
+  .main-grid {
     -ms-grid-columns: 64px 64px 1fr 64px 64px;
         grid-template-columns: 64px 64px 1fr 64px 64px;
   }
 }
 @media (min-width: 512px) and (max-width: 896px) {
-  .container {
+  .main-grid {
     -ms-grid-columns: 0px 64px 1fr 64px 0px;
         grid-template-columns: 0px 64px 1fr 64px 0px;
   }
 }
 @media (min-width: 320px) and (max-width: 512px) {
-  .container {
+  .main-grid {
     -ms-grid-columns: 0px 32px 1fr 32px 0px;
         grid-template-columns: 0px 32px 1fr 32px 0px;
   }
@@ -255,15 +256,37 @@
   }
 }
 
-.header {
-  grid-column: 3/4;
-  margin-top: 96px;
-  margin-bottom: 160px;
-  height: 60px;
-  background-color: #f7f7f7;
+.section-title {
+  color: #C5C5C5;
 }
 
-.mission {
+.hero__header-container {
+  grid-column: 3/4;
+  margin-bottom: 160px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.header__logo {
+  width: 145px;
+  height: 56px;
+  background-image: url("logo.a84cba74.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header__contact-email {
+  color: #DADADA;
+}
+
+.hero__mission-container {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -276,40 +299,39 @@
   margin-bottom: 160px;
 }
 
-.mission__h1 {
+.mission__heading {
   text-align: center;
   margin-bottom: 32px;
 }
 @media (min-width: 1536px) {
-  .mission__h1 {
+  .mission__heading {
     max-width: 1024px;
   }
 }
 @media (min-width: 896px) and (max-width: 1536px) {
-  .mission__h1 {
+  .mission__heading {
     max-width: 768px;
   }
 }
 
-.mission__h4 {
+.mission__description {
   text-align: center;
-  color: #828282;
+  color: #5C5C5C;
 }
 @media (min-width: 1536px) {
-  .mission__h4 {
+  .mission__description {
     max-width: 896px;
   }
 }
 @media (min-width: 896px) and (max-width: 1536px) {
-  .mission__h4 {
+  .mission__description {
     max-width: 640px;
   }
 }
 
-.promo-video {
+.hero__promo-video {
   grid-column: 2/5;
   height: 80vh;
-  margin-bottom: 160px;
   background-color: #f7f7f7;
   position: relative;
 }
@@ -328,4 +350,78 @@
 .promo-video__embed {
   width: 100%;
   height: 100%;
+}
+
+.services-container {
+  grid-column: 3/4;
+  display: -ms-grid;
+  display: grid;
+  max-width: 1024px;
+  -ms-grid-columns: 2fr 1fr 2fr;
+      grid-template-columns: 2fr 1fr 2fr;
+  grid-row-gap: 128px;
+  justify-self: center;
+}
+
+.service-container {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 96px 1fr;
+      grid-template-columns: 96px 1fr;
+  grid-column-gap: 32px;
+}
+.service--leadership {
+  grid-column: 2/-1;
+}
+.service--staffing {
+  grid-column: 1/3;
+}
+.service--design-systems {
+  grid-column: 2/-1;
+}
+
+.sevice-icon {
+  width: 100%;
+  height: 96px;
+  background-color: #828282;
+}
+.service-title {
+  margin-bottom: 16px;
+}
+
+.service-description {
+  color: #5C5C5C;
+}
+
+.clients__section-heading-container {
+  grid-column: 3/4;
+  justify-self: center;
+}
+
+.clients__section-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.clients__section-headline {
+  text-align: center;
+}
+
+.clients__testimonials-container {
+  grid-column: 3/4;
+  justify-self: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5fr;
+      grid-template-columns: 1fr 5fr;
+  column-gap: 32px;
+}
+
+.client-info {
+  grid-column: 1/2;
+}
+
+.client-testimonial {
+  grid-column: 2/3;
 }
