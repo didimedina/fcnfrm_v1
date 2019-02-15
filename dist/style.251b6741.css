@@ -46,6 +46,10 @@
   }
 }
 
+.team__members-container, .team__section-title, .clients__testimonials-container, .clients__section-heading-container, .hero__header-container {
+  grid-column: 3/4;
+}
+
 @font-face {
   src: url("TiemposText-Bold.a94c8fc8.otf");
   font-family: Tiempos;
@@ -261,7 +265,6 @@
 }
 
 .hero__header-container {
-  grid-column: 3/4;
   margin-bottom: 160px;
   display: -ms-flexbox;
   display: flex;
@@ -395,7 +398,6 @@
 }
 
 .clients__section-heading-container {
-  grid-column: 3/4;
   justify-self: center;
 }
 
@@ -409,19 +411,91 @@
 }
 
 .clients__testimonials-container {
-  grid-column: 3/4;
   justify-self: center;
+  max-width: 1024px;
+  margin-top: 96px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 5fr;
-      grid-template-columns: 1fr 5fr;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
   column-gap: 32px;
+  row-gap: 96px;
 }
 
 .client-info {
   grid-column: 1/2;
 }
 
+.client-name {
+  margin-bottom: 8px;
+}
+
+.client-position {
+  color: #919191;
+}
+
 .client-testimonial {
   grid-column: 2/3;
+}
+
+.clients__logos-container {
+  margin-top: 96px;
+  grid-column: 3/4;
+  justify-self: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.client-logo {
+  height: 56px;
+  max-width: 256px;
+  margin: 28px;
+}
+
+.team__section-title {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.team__members-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-column-align: center;
+      justify-items: center;
+  grid-column-gap: 64px;
+}
+
+.member-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-grid-column-align: center;
+      justify-items: center;
+}
+
+.member__photo {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.member-name {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.member-title {
+  text-align: center;
+  color: #919191;
 }
