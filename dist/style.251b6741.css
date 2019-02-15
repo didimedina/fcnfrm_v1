@@ -46,7 +46,7 @@
   }
 }
 
-.footer-container, .principles-container, .team__members-container, .team__section-title, .clients__testimonials-container, .clients__section-heading-container, .hero__header-container {
+.cta-container, .principles-container, .team__members-container, .team__section-title, .clients__testimonials-container, .clients__section-heading-container, .hero__header-container {
   grid-column: 3/4;
 }
 
@@ -530,12 +530,12 @@
   color: #5C5C5C;
 }
 
-.footer-section {
+.cta-section {
   background-color: #F7F7F7;
   margin-top: 96px;
 }
 
-.footer-container {
+.cta-container {
   max-width: 1024px;
   justify-self: center;
   display: -ms-grid;
@@ -556,4 +556,23 @@
 .secondary-cta__title {
   margin-bottom: 12px;
   color: #5C5C5C;
+}
+
+.footer-container {
+  grid-column: 1/3;
+  border-top: 1px solid #DADADA;
+  margin-top: 32px;
+  padding-top: 40px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.footer__symbol {
+  max-height: 56px;
 }

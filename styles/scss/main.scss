@@ -245,15 +245,14 @@
     color: $color-darker;
 }
 
-// ==== FOOTER SECTION ============================
+// ==== CTA + FOOTER SECTION ============================
 
-.footer-section {
+.cta-section {
     background-color: $color-lightest;
     margin-top: 96px;
-
 }
 
-.footer-container {
+.cta-container {
     @extend %mg-contained;
     max-width: 1024px;
     justify-self: center;
@@ -271,4 +270,19 @@
 .secondary-cta__title {
     margin-bottom: 12px;
     color: $color-darker;
+}
+
+.footer-container {
+    grid-column: 1 / 3;
+    border-top: 1px solid $color-light;
+    margin-top: 32px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__symbol {
+    max-height: 56px;
 }
