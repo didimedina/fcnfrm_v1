@@ -1954,10 +1954,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var animCurve = 'easeOutQuad';
   var heroAnimTrigger = document.getElementById('hero-anim-trigger');
-  var testimonials = document.getElementById('testimonials');
+  var servicesAnimTrigger = document.getElementById('services-anim-trigger');
+  var clientsAnimTrigger = document.getElementById('testimonials'); // ===== HERO ANIM =================
+
   var heroAnim = new Waypoint({
     element: heroAnimTrigger,
     handler: function handler() {
+      console.log('hero fired!');
       (0, _animeEs.default)({
         targets: ['.hero__header-container', '.hero__mission-container', '.hero__promo-video'],
         translateY: [100, 0],
@@ -1966,19 +1969,55 @@ document.addEventListener('DOMContentLoaded', function () {
         duration: 600,
         delay: _animeEs.default.stagger(300)
       });
-      waypoint.disable();
+      this.destroy();
     }
+  }); // ===== SERVICES ANIM ==============
+
+  (0, _animeEs.default)({
+    targets: ['.service-container', '.services__section-title'],
+    opacity: 0,
+    duration: 0
+  });
+  var servicesAnim = new Waypoint({
+    element: servicesAnimTrigger,
+    handler: function handler(direction) {
+      console.log('services fired!');
+
+      if (direction == 'down') {
+        (0, _animeEs.default)({
+          targets: '.service-container',
+          translateX: [300, 0],
+          opacity: 1,
+          easing: animCurve,
+          duration: 800,
+          delay: _animeEs.default.stagger(300)
+        });
+        (0, _animeEs.default)({
+          targets: '.services__section-title',
+          translateX: [-100, 0],
+          opacity: 1,
+          easing: animCurve,
+          duration: 800
+        });
+      }
+
+      ;
+      this.destroy();
+    },
+    offset: '40%'
   }); // Set starting points.
 
   (0, _animeEs.default)({
-    targets: testimonials.children,
+    targets: clientsAnimTrigger.children,
     opacity: 0,
     duration: 0
   }); // Exicute anim when scrolled into view.
 
-  var clientsWP = new Waypoint({
-    element: testimonials,
+  var clientsAnim = new Waypoint({
+    element: clientsAnimTrigger,
     handler: function handler(direction) {
+      console.log('clients fired!');
+
       if (direction == 'down') {
         (0, _animeEs.default)({
           targets: this.element.children,
@@ -1990,7 +2029,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }
 
-      waypoint.disable();
+      this.destroy();
     },
     offset: '50%'
   });

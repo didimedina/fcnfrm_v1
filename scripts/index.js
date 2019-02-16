@@ -107,12 +107,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get elements by ID and assign to variables to use as triggers with Waypoints.
     let animCurve = 'easeOutQuad'; 
     let heroAnimTrigger = document.getElementById('hero-anim-trigger');
-    let testimonials = document.getElementById('testimonials');
+    let servicesAnimTrigger = document.getElementById('services-anim-trigger');
+    let clientsAnimTrigger = document.getElementById('testimonials');
 
+    // ===== HERO ANIM =================
 
     let heroAnim = new Waypoint({
         element: heroAnimTrigger,
         handler: function () {
+            console.log('hero fired!');
             anime({
                 targets: ['.hero__header-container', '.hero__mission-container', '.hero__promo-video'],
                 translateY: [100, 0],
@@ -121,22 +124,57 @@ document.addEventListener('DOMContentLoaded', function () {
                 duration: 600,
                 delay: anime.stagger(300)
             });
-            waypoint.disable();
+            this.destroy();
         },
+    });
+
+    // ===== SERVICES ANIM ==============
+    anime({
+        targets: ['.service-container', '.services__section-title'],
+        opacity: 0,
+        duration: 0
+    });
+
+    let servicesAnim = new Waypoint({
+        element: servicesAnimTrigger,
+        handler: function (direction) {
+            console.log('services fired!');
+            if (direction == 'down'){
+                anime({
+                    targets: '.service-container',
+                    translateX: [300, 0],
+                    opacity: 1,
+                    easing: animCurve,
+                    duration: 800,
+                    delay: anime.stagger(300)
+                });
+
+                anime({
+                    targets: '.services__section-title',
+                    translateX: [-100, 0],
+                    opacity: 1,
+                    easing: animCurve,
+                    duration: 800,
+                })
+            };
+            this.destroy();
+        },
+        offset: '40%',
     })
 
 
     // Set starting points.
     anime({
-        targets: testimonials.children,
+        targets: clientsAnimTrigger.children,
         opacity: 0,
         duration: 0
-    })
+    });
 
     // Exicute anim when scrolled into view.
-    let clientsWP = new Waypoint({
-        element: testimonials,
+    let clientsAnim = new Waypoint({
+        element: clientsAnimTrigger,
         handler: function (direction) {
+            console.log('clients fired!');
             if (direction == 'down') {
                 anime({
                     targets: this.element.children,
@@ -147,9 +185,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     delay: anime.stagger(100)
                 });
             }
-            waypoint.disable();
+            this.destroy();
         },
-        offset: '50%'
-    })
+        offset: '50%',
+    });
 
 })
