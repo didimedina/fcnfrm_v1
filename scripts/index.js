@@ -1,4 +1,5 @@
 import anime from '../node_modules/animejs/lib/anime.es.js';
+import waypoints from '../node_modules/waypoints/lib/noframework.waypoints.min.js';
 
 // Define our viewportWidth variable
 let viewportWidth;
@@ -32,11 +33,21 @@ let setBreakpoint = function () {
     }
 }
 
+
+
 // Set our initial width and log it
 getViewportWidth();
 setBreakpoint();
 
 // On resize events, recalculate and log
+// window.addEventListener('resize', function () {
+//     getViewportWidth();
+//     setBreakpoint();
+//     console.log(breakpoint);
+// }, false);
+
+// setInterval(console.log(breakpoint), 500);
+
 // let onResize = function() { 
 //     window.addEventListener('resize', function () {
 //         setViewportWidth();
@@ -52,13 +63,16 @@ setBreakpoint();
 // way I could set the conditions per animation vs wrapping them all in one resize eventListener. also i wont have to write all the syntax all the time.
 
 
+// ======= ANIMATIONS ================================
+// Set body opacity to 0 and only show when DOMContentLoaded so theres no twitching.
+document.body.style.opacity = 0;
+
 
 let promoVideoCTA = document.querySelector('.promo-video__img-placeholder');
 
 promoVideoCTA.addEventListener('click', function () {
     getViewportWidth();
     setBreakpoint();
-
 
     promoVideoCTA.style.visibility = "hidden";
     document.querySelector('.promo-video__embed').src = 'https://www.youtube.com/embed/3s3UeXjzO74?autoplay=1&controls=1';
@@ -84,4 +98,58 @@ promoVideoCTA.addEventListener('click', function () {
             });
         } 
     });
+})
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.body.style.opacity = 1;
+    // Get elements by ID and assign to variables to use as triggers with Waypoints.
+    let animCurve = 'easeOutQuad'; 
+    let heroAnimTrigger = document.getElementById('hero-anim-trigger');
+    let testimonials = document.getElementById('testimonials');
+
+
+    let heroAnim = new Waypoint({
+        element: heroAnimTrigger,
+        handler: function () {
+            anime({
+                targets: ['.hero__header-container', '.hero__mission-container', '.hero__promo-video'],
+                translateY: [100, 0],
+                opacity: [0, 1],
+                easing: animCurve,
+                duration: 600,
+                delay: anime.stagger(300)
+            });
+            waypoint.disable();
+        },
+    })
+
+
+    // Set starting points.
+    anime({
+        targets: testimonials.children,
+        opacity: 0,
+        duration: 0
+    })
+
+    // Exicute anim when scrolled into view.
+    let clientsWP = new Waypoint({
+        element: testimonials,
+        handler: function (direction) {
+            if (direction == 'down') {
+                anime({
+                    targets: this.element.children,
+                    translateX: [-100, 0],
+                    opacity: [0, 1],
+                    easing: animCurve,
+                    duration: 400,
+                    delay: anime.stagger(100)
+                });
+            }
+            waypoint.disable();
+        },
+        offset: '50%'
+    })
+
 })
