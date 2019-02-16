@@ -23,7 +23,7 @@
 }
 
 .header__contact-email {
-    color: $color-light;
+    @include text-link-color($color-dark)
 }
 
 .hero__mission-container {
@@ -261,15 +261,26 @@
     grid-gap: 64px;
 }
 
+.primary-cta__title {
+    margin-bottom: 32px;
+}
+
 .secondary-cta-list-container {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-gap: 40px;
 }
 
+.secondary-cta-container {
+    color: $color-darker;
+}
+
 .secondary-cta__title {
     margin-bottom: 12px;
-    color: $color-darker;
+}
+
+.secondary-cta__text-link {
+    @include text-link-color($color-darker);
 }
 
 .footer-container {
@@ -285,4 +296,8 @@
 
 .footer__symbol {
     max-height: 56px;
+}
+
+.footer__contact-email {
+    @include text-link-color($color-dark);
 }

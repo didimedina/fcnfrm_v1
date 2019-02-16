@@ -264,6 +264,32 @@
   color: #C5C5C5;
 }
 
+.button {
+  padding: 16px 28px;
+  border: none;
+  transition: all 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.button--primary {
+  background-color: #242628;
+  color: white;
+}
+.button--primary:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: black;
+}
+
+.text-link {
+  color: #242628;
+  border-bottom: 2px solid rgba(36, 38, 40, 0.4);
+  text-decoration: none;
+  padding: 2px 0px;
+  transition: all 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  text-overflow: ellipsis;
+}
+.text-link:hover {
+  border-bottom: 2px solid #242628;
+}
+
 .hero__header-container {
   margin-bottom: 160px;
   display: -ms-flexbox;
@@ -286,7 +312,11 @@
 }
 
 .header__contact-email {
-  color: #DADADA;
+  color: #919191;
+  border-bottom: 2px solid rgba(145, 145, 145, 0.4);
+}
+.header__contact-email:hover {
+  border-bottom: 2px solid #919191;
 }
 
 .hero__mission-container {
@@ -545,6 +575,10 @@
   grid-gap: 64px;
 }
 
+.primary-cta__title {
+  margin-bottom: 32px;
+}
+
 .secondary-cta-list-container {
   display: -ms-grid;
   display: grid;
@@ -553,9 +587,20 @@
   grid-gap: 40px;
 }
 
+.secondary-cta-container {
+  color: #5C5C5C;
+}
+
 .secondary-cta__title {
   margin-bottom: 12px;
+}
+
+.secondary-cta__text-link {
   color: #5C5C5C;
+  border-bottom: 2px solid rgba(92, 92, 92, 0.4);
+}
+.secondary-cta__text-link:hover {
+  border-bottom: 2px solid #5C5C5C;
 }
 
 .footer-container {
@@ -575,4 +620,12 @@
 
 .footer__symbol {
   max-height: 56px;
+}
+
+.footer__contact-email {
+  color: #919191;
+  border-bottom: 2px solid rgba(145, 145, 145, 0.4);
+}
+.footer__contact-email:hover {
+  border-bottom: 2px solid #919191;
 }
