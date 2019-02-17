@@ -1,9 +1,10 @@
-import anime from '../node_modules/animejs/lib/anime.es.js';
-import waypoints from '../node_modules/waypoints/lib/noframework.waypoints.min.js';
+import anime from 'animejs/lib/anime.es';
+import waypoints from 'waypoints/lib/noframework.waypoints.min';
 
 // Define our viewportWidth variable
 let viewportWidth;
 let breakpoint;
+let lastBreakpoint = 'unset';
 
 // Set/update the viewportWidth value
 let getViewportWidth = function () {
@@ -13,122 +14,78 @@ let getViewportWidth = function () {
 // Log the viewport width into the console
 let setBreakpoint = function () {
     if (viewportWidth >= 1536) {
-        // console.log('xl-screen');
         breakpoint = 'xl-screen';
-        // return 'xl-screen';
     } else if (viewportWidth >= 896 && viewportWidth < 1536) {
-        // console.log('l-screen');
         breakpoint = 'l-screen';
-        // return 'l-screen';
     } else if (viewportWidth >= 512 && viewportWidth < 896) {
-        // console.log('m-screen');
         breakpoint = 'm-screen';
-        // return 'm-screen';
     } else if (viewportWidth >= 320 && viewportWidth < 512) {
-        // console.log('s-screen');
         breakpoint = 's-screen';
-        // return 's-screen';
     } else {
         console.log('Not supported -- too small')
     }
 }
 
-
-
-// Set our initial width and log it
+// Set our initial breakpoint
 getViewportWidth();
 setBreakpoint();
-
-// On resize events, recalculate and log
-// window.addEventListener('resize', function () {
-//     getViewportWidth();
-//     setBreakpoint();
-//     console.log(breakpoint);
-// }, false);
-
-// setInterval(console.log(breakpoint), 500);
-
-// let onResize = function() { 
-//     window.addEventListener('resize', function () {
-//         setViewportWidth();
-//         let breakpoint = returnBreakpoint();
-//         console.log(breakpoint);
-//     }, false);
-// }
-
-// if (onResize() == 'l-screen') {
-//     console.log('its working');
-// };
-// This isn't working, but what im attempting to do is create a function that could be compared per instance that
-// way I could set the conditions per animation vs wrapping them all in one resize eventListener. also i wont have to write all the syntax all the time.
 
 
 // ======= ANIMATIONS ================================
 // Set body opacity to 0 and only show when DOMContentLoaded so theres no twitching.
 document.body.style.opacity = 0;
 
+let animCurve = 'easeOutQuad';
+var isInViewport = function (element) {
+    var bounding = element.getBoundingClientRect();
+    return (
+        bounding.top >= 0 &&
+        bounding.left >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
 
-let promoVideoCTA = document.querySelector('.promo-video__img-placeholder');
+var isPeakingInViewport = function (element, threshold) {
+    let boundingTop = document.querySelector(element).getBoundingClientRect().top;
+    return (
+        boundingTop < window.innerHeight / threshold
+    );
+};
 
-promoVideoCTA.addEventListener('click', function () {
-    getViewportWidth();
-    setBreakpoint();
+// window.addEventListener('scroll', function (){
+//     console.log(isPeakingInViewport('.hero__promo-video', 1.1))
+// }, false);
 
-    promoVideoCTA.style.visibility = "hidden";
-    document.querySelector('.promo-video__embed').src = 'https://www.youtube.com/embed/3s3UeXjzO74?autoplay=1&controls=1';
-
-    if (breakpoint == 'xl-screen' || breakpoint == 'l-screen') {
-        anime({
-            targets: '.hero__promo-video',
-            scale: [1, 1.05],
-            easing: 'spring(1, 80, 10, 0)',
-            duration: 500
-        });
-    }
-
-    window.addEventListener('resize', function () {
-        getViewportWidth();
-        setBreakpoint();
-        if (breakpoint == 'm-screen' || breakpoint == 's-screen') {
-            anime({
-                targets: '.hero__promo-video',
-                scale: 1,
-                easing: 'spring(1, 80, 10, 0)',
-                duration: 200
-            });
-        } 
-    });
-})
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.body.style.opacity = 1;
-    // Get elements by ID and assign to variables to use as triggers with Waypoints.
-    let animCurve = 'easeOutQuad'; 
+// =================================================
+// === HERO ANIM ===================================
+// =================================================
+const runHeroAnim = function(){
     let heroAnimTrigger = document.getElementById('hero-anim-trigger');
-    let servicesAnimTrigger = document.getElementById('services-anim-trigger');
-    let clientsAnimTrigger = document.getElementById('testimonials');
-
-    // ===== HERO ANIM =================
 
     let heroAnim = new Waypoint({
         element: heroAnimTrigger,
         handler: function () {
-            console.log('hero fired!');
             anime({
                 targets: ['.hero__header-container', '.hero__mission-container', '.hero__promo-video'],
                 translateY: [100, 0],
                 opacity: [0, 1],
                 easing: animCurve,
-                duration: 600,
+                duration: 1600,
                 delay: anime.stagger(300)
             });
             this.destroy();
         },
     });
+}; 
 
-    // ===== SERVICES ANIM ==============
+
+// =================================================
+// === SERVICES ANIM ===============================
+// =================================================
+const runServicesAnim = function() {
+    let servicesAnimTrigger = document.getElementById('services-anim-trigger');
+
     anime({
         targets: ['.service-container', '.services__section-title'],
         opacity: 0,
@@ -137,57 +94,185 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let servicesAnim = new Waypoint({
         element: servicesAnimTrigger,
-        handler: function (direction) {
-            console.log('services fired!');
-            if (direction == 'down'){
-                anime({
-                    targets: '.service-container',
-                    translateX: [300, 0],
-                    opacity: 1,
-                    easing: animCurve,
-                    duration: 800,
-                    delay: anime.stagger(300)
-                });
-
-                anime({
-                    targets: '.services__section-title',
-                    translateX: [-100, 0],
-                    opacity: 1,
-                    easing: animCurve,
-                    duration: 800,
-                })
-            };
+        handler: function () {
+            console.log(' we inservices');
+            let tl = anime.timeline({
+                easing: animCurve,
+                duration: 1200
+            })
+            tl.add({
+                targets: '.service-container',
+                translateX: [160, 0],
+                opacity: 1,
+                delay: anime.stagger(300)
+            }) 
+            .add({
+                targets: '.services__section-title',
+                opacity: 1,
+                translateX: [-100, 0],
+            }, 200)
             this.destroy();
         },
         offset: '40%',
     })
+};
 
 
-    // Set starting points.
+// =================================================
+// === CLIENTS ANIM ================================
+// =================================================
+const runClientsAnim = function () {
+    let clientsAnimTrigger = document.querySelector('.clients-anim-trigger');
+    let testimonials = document.getElementById('testimonials');
+
     anime({
-        targets: clientsAnimTrigger.children,
+        targets: [testimonials.children, '.clients__section-title', '.clients__section-headline', '.client-logo'],
         opacity: 0,
         duration: 0
     });
 
-    // Exicute anim when scrolled into view.
     let clientsAnim = new Waypoint({
         element: clientsAnimTrigger,
-        handler: function (direction) {
-            console.log('clients fired!');
-            if (direction == 'down') {
-                anime({
-                    targets: this.element.children,
-                    translateX: [-100, 0],
-                    opacity: [0, 1],
-                    easing: animCurve,
-                    duration: 400,
-                    delay: anime.stagger(100)
-                });
-            }
+        handler: function () {
+            let tl = anime.timeline({
+                easing: animCurve,
+                duration: 800,
+            })
+            tl
+            .add({
+                targets: '.clients__section-headline',
+                opacity: 1,
+                scale: [1.3, 1.3],
+                translateY: [200, 200],
+                duration: 1200,
+            })
+            .add({
+                targets: '.clients__section-headline',
+                scale: 1,
+                translateY: 0,
+                duration: 800,
+            })
+            .add({
+                targets: '.clients__section-title',
+                opacity: 1,
+                duration: 800,
+            }, "-=400")
+            .add({
+                targets: testimonials.children,
+                opacity: 1,
+                translateX: [100, 0],
+                duration: 800,
+                delay: anime.stagger(200)
+            }, '-=800')
+            .add({
+                targets: '.client-logo',
+                opacity: 1,
+                scale: [1.1, 1],
+                duration: 400,
+                delay: anime.stagger(200)
+            }, '-=800')
             this.destroy();
         },
-        offset: '50%',
+        offset: '40%',
     });
 
-})
+};
+
+// =================================================
+// === TEAM ANIM ===================================
+// =================================================
+const runTeamAnim = function (){
+    let teamAnimTrigger = document.querySelector('.team-anim-trigger');
+
+    anime({
+        targets: ['.member-container', '.team__section-title'],
+        opacity: 0,
+        duration: 0
+    });
+
+    let teamAnim = new Waypoint({
+        element: teamAnimTrigger,
+        handler: function(){
+            let tl = anime.timeline({
+                easing: animCurve,
+            })
+            tl.add({
+                targets: '.member-container',
+                scale: [0.8, 1],
+                translateY: [160, 0],
+                opacity: 1,
+                duration: 600,
+                delay: anime.stagger(200)
+            })
+            .add({
+                targets: '.team__section-title',
+                duration: 1200,
+                opacity: 1
+            }, 300)
+            this.destroy();
+        },
+        offset: '30%'
+    })
+}
+
+const runPrinciplesAnim = function () {
+    let principlesAnimTrigger = document.querySelector('.principles-anim-trigger');
+
+    anime({
+        targets: ['.principles__section-heading-container', '.principle-container'],
+        opacity: 0,
+        duration: 0
+    })
+
+    let principlesAnim = new Waypoint({
+        element: principlesAnimTrigger,
+        handler: function () {
+            let tl = anime.timeline({
+                easing: animCurve,
+                duration: 1200
+            });
+
+            tl.add({
+                targets: '.principles__section-heading-container',
+                opacity: 1,
+                translateX: [-100, 0],
+            })
+            .add({
+                targets: '.principle-container',
+                opacity: 1,
+                scale: [0.9, 1],
+                delay: anime.stagger(300)
+            }, 400)
+            this.destroy();
+        },
+        offset: '40%'
+    })
+}
+
+// =================================================
+// === ANIM CONTROLLER =============================
+// =================================================
+const runAnims = function () {
+    // Check if breakpoint has changed then run scripts.
+    if (lastBreakpoint == 'unset' || lastBreakpoint != breakpoint) {
+        runHeroAnim();
+        runServicesAnim();
+        runClientsAnim();
+        runTeamAnim();
+        runPrinciplesAnim();
+        
+        // Update last breakpoint after anim run.
+        lastBreakpoint = breakpoint;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.body.style.opacity = 1;
+    runAnims();
+}, false);
+window.addEventListener('resize', function(){
+    getViewportWidth();
+    setBreakpoint();
+    runAnims();
+}, false);
+
