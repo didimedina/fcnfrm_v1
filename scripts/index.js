@@ -113,7 +113,7 @@ const runServicesAnim = function() {
             }, 200)
             this.destroy();
         },
-        offset: '40%',
+        offset: '60%',
     })
 };
 
@@ -144,7 +144,7 @@ const runClientsAnim = function () {
                 opacity: 1,
                 scale: [1.3, 1.3],
                 translateY: [200, 200],
-                duration: 1200,
+                duration: 800,
             })
             .add({
                 targets: '.clients__section-headline',
@@ -211,7 +211,7 @@ const runTeamAnim = function (){
             }, 300)
             this.destroy();
         },
-        offset: '30%'
+        offset: '50%'
     })
 }
 

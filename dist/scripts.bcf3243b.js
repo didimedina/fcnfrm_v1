@@ -1965,7 +1965,7 @@ var runServicesAnim = function runServicesAnim() {
       }, 200);
       this.destroy();
     },
-    offset: '40%'
+    offset: '60%'
   });
 }; // =================================================
 // === CLIENTS ANIM ================================
@@ -1993,7 +1993,7 @@ var runClientsAnim = function runClientsAnim() {
         opacity: 1,
         scale: [1.3, 1.3],
         translateY: [200, 200],
-        duration: 1200
+        duration: 800
       }).add({
         targets: '.clients__section-headline',
         scale: 1,
@@ -2053,7 +2053,7 @@ var runTeamAnim = function runTeamAnim() {
       }, 300);
       this.destroy();
     },
-    offset: '30%'
+    offset: '50%'
   });
 };
 
